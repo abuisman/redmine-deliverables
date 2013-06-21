@@ -1,0 +1,20 @@
+<table class='list'>
+  <tr>
+    <th>Project</th>
+    <th>Hand ins</th>
+  </tr>
+  <% deliverable.requests.each do |req| %>
+  <tr>
+    <td><%= req.project.name %></td>
+    <td>
+      <% if req.hand_ins.any? %>
+        <% req.hand_ins.each do |hand_in| %>
+          <div class="hand_in <%= 'late' if hand_in.created_at > @deliverable.deadline %>"><%= link_to_attachments hand_in, :thumbnails => true %></div>
+        <% end %>
+      <% else %>
+        -
+      <% end %>
+    </td>
+  </tr>
+  <% end %>
+</table>

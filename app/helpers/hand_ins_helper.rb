@@ -1,0 +1,2 @@
+module HandInsHelper
+end

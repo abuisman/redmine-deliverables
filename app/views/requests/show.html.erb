@@ -1,0 +1,34 @@
+<div class="contextual">
+<%= link_to 'Hand in', new_project_request_hand_in_path(@project, @request), :class => 'icon icon-add' %>
+</div>
+
+<h2><%= link_to 'Deliverables', project_deliverables_path %> &#187; <%=h @request.deliverable.name %></h2>
+
+<p>The deadline for this deliverable is at <%= @request.deliverable.deadline %></p>
+
+<table class='list'>
+  <tr>
+    <th></th>
+    <th>Hand ins</th>
+    <th>Actions</th>
+  </tr>
+  <% if @request.hand_ins.any? %>
+    <% @request.hand_ins.each do |hand_in| %>
+      <% if hand_in.project.id == @project.id %>
+        <tr>
+          <td>
+            <%= hand_in.created_at.to_formatted_s :long_ordinal %>
+          </td>
+          <td>
+            <div class="hand_in <%= 'late' if hand_in.created_at > @request.deliverable.deadline %>"><%= link_to_attachments hand_in, :thumbnails => true %></div>
+          </td>
+          <td>
+            <%= link_to 'delete', project_request_hand_in_path(@project, @request, hand_in), :method => :delete, :confirm => "Are you sure you want to delete this hand in? You will lose the document.", :class => "icon icon-del" %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  <% else %>
+    -
+  <% end %>
+</table>

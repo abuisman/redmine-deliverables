@@ -1,0 +1,17 @@
+<%= render 'shared/styles' %>
+
+<div class="contextual">
+  <%= link_to 'Edit deliverable', edit_deliverable_path(@deliverable), :class => "icon icon-edit" %>
+
+  <% unless @deliverable.archived %>
+    <%= link_to 'Archive deliverable', deliverable_archive_path(@deliverable), :class => "icon icon-package" %>
+  <% else %>
+    <%= link_to 'Activate deliverable', deliverable_activate_path(@deliverable), :class => "icon icon-reload" %>
+    <%= link_to 'Delete deliverable', deliverable_path(@deliverable), :method => :delete, :confirm => "Are you 100% sure? If you delete a deliverable with hand_ins, the hand_ins will be deleted as well. This cannot be undone.", :class => "icon icon-del" %>
+  <% end %>
+</div>
+
+<h2><%= link_to 'Deliverables', deliverables_path %> &#187; <%=h @deliverable.name %> <%= "(archived)" if @deliverable.archived %></h2>
+
+<p>Deadline was at <%= @deliverable.deadline %></p>
+<%= render :partial => 'hand_ins', :locals => {:deliverable => @deliverable} %>

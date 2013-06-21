@@ -1,0 +1,14 @@
+<h2>
+  <%= link_to 'Deliverables', project_deliverables_path %> &#187; 
+  <%= link_to @request.deliverable.name, project_request_path(@project, @request) %> &#187;
+  <%= "Hand in"  %>
+</h2>
+
+
+<%= form_for [@project, @request, @hand_in] do |f| %>
+
+<h3> Pick a file to upload</h3>
+<p><%= render :partial => 'attachments/form', :locals => {:container => @hand_in} %></p>
+
+<%= f.submit 'Hand in' %>
+<% end %>

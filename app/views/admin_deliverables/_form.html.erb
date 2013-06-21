@@ -1,0 +1,36 @@
+<%= render 'shared/styles' %>
+
+<%= error_messages_for 'deliverable' %>
+
+<%= form_for @deliverable do |f| %>
+
+<fieldset>
+  <legend>Deliverable</legend>
+<div class='form-fields'>
+  <%= f.label :name %><br>
+  <%= f.text_field :name %>
+</div>
+
+<div class='form-fields'>
+  <%= f.label :deadline, 'Deadline' %><br>
+  <%= f.text_field :deadline %>
+  <%= calendar_for('deliverable_deadline') %>
+</div>
+
+<div class='form-fields'>
+  <%= f.label :allow_after_deadline, 'May be handed in after deadline:' %> 
+  <%= f.check_box :allow_after_deadline %>
+</div>
+
+<div class='form-fields'>
+  <%= label_tag 'projects' %> <br/>
+  <% options = "" %>
+  <% @projects.each do |pr| %>
+    <% options += "<option value='#{pr.id}'>#{pr.name}</option>" %>
+  <% end %>
+  <%= select_tag "projects", options.html_safe, :multiple => true %>
+</div>
+</fieldset>
+
+<%= f.submit "Create" %>
+<% end %>

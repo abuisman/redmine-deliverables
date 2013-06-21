@@ -1,0 +1,18 @@
+<h2>Deliverables</h2>
+
+<table class='list'>
+  <tr>
+    <th>Name</th>
+    <th>Handed in?</th>
+    <th>Deadline</th>
+    <th>Hand In</th>
+  </tr>
+<% @requests.each do |req| %>
+  <tr>
+    <td><%= link_to req.deliverable.name, project_request_path(@project, req) %></td>
+    <td><%= req.hand_ins.any? ? "Yes" : "No" %></td>
+    <td><%= req.deliverable.deadline %> </td>
+    <td><%= link_to 'Hand In', new_project_request_hand_in_path(@project, req), :class=> 'icon icon-add' %></td>
+  </tr>
+<% end %>
+</table>

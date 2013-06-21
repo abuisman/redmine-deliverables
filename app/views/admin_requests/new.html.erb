@@ -1,0 +1,7 @@
+<div class='form-fields'>
+  <% options = "" %>
+  <% @projects.each do |pr| %>
+    <% options += "<option value='#{pr.id}'>#{pr.name}</option>" %>
+  <% end %>
+  <%= select_tag "projects", options.html_safe, :multiple => true %>
+</div>
