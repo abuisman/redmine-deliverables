@@ -1,3 +1,5 @@
-= deliverables
+= Deliverables
 
-Description goes here
+Plugin for Redmine to request deliverables from projects and have members (whoever has permission) upload versions of deliverables.
+
+The intended use is for things like images, documents, etc.
